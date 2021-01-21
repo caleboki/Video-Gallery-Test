@@ -21,6 +21,7 @@ class InMemoryUserRepository implements UserRepository
      */
     public function __construct(array $users = null)
     {
+    	//TODO: Why are is this an associative array starting at 1?
         $this->users = $users ?? [
             1 => new User(1, 'bill.gates', 'Bill', 'Gates'),
             2 => new User(2, 'steve.jobs', 'Steve', 'Jobs'),
@@ -49,4 +50,18 @@ class InMemoryUserRepository implements UserRepository
 
         return $this->users[$id];
     }
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function findUserByUsername(string $username): User
+	{
+
+		foreach ($this->users as $user) {
+			if ($user->getUsername() === $username) {
+				return $user;
+			}
+		}
+		throw new UserNotFoundException();
+	}
 }
