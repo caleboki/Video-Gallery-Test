@@ -1,62 +1,58 @@
 <template>
-  <div>
-    <Nuxt />
-  </div>
+    <div>
+        <Header/>
+        <Nuxt/>
+    </div>
 </template>
 
+<script>
+  import Header from '../components/Header.vue';
+
+  export default {
+    components: {
+      Header,
+    },
+    beforeMount() {
+
+      //Check if logged in. Redirect accordingly
+      if (this.$store.state.loginStore.list == false) {
+        this.$router.push({
+          path: '/login',
+        });
+      }
+    },
+  };
+</script>
+
 <style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
+    /*  This is the closest font I could find to the spec */
+    @import url('https://fonts.googleapis.com/css2?family=Belleza&display=swap');
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+    html, body {
+        font-family: 'Belleza', sans-serif;
+    }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+    }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+    .btn-algaecal {
+        color: #fff;
+        background-color: #047D61;
+        border-color: #047D61;
+    }
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+    .btn-algaecal:hover {
+        color: #fff;
+        background-color: #013B2F;
+    }
+
+    /*This changes the color of the dropdown hover highlight*/
+    .dropdown .dropdown-menu .dropdown-item:active, .dropdown .dropdown-menu .dropdown-item:hover {
+        background-color: #047D61 !important;
+    }
 </style>
