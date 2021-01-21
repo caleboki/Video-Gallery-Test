@@ -35,6 +35,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/persistedState.client.js', ssr: false  }
   ],
   /*
   ** Auto import components
@@ -55,10 +56,18 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt'
   ],
+
+  serverMiddleware: [
+    '~/serverMiddleware/redirect.js'
+  ],
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+
+  env: {
+    baseUrl: 'http://localhost:8080'
   }
 }
